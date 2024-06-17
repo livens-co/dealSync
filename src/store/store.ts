@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import contractsReducer, { ContractsState } from './contractsSlice';
 
-const loadState = (): { contracts: ContractsState } | undefined => {
+const loadState = (): ContractsState | undefined => {
   try {
-    const serializedState = localStorage.getProduct('state');
+    const serializedState = localStorage.getItem('state');
     if (serializedState === null) {
       return undefined;
     }
@@ -13,12 +13,12 @@ const loadState = (): { contracts: ContractsState } | undefined => {
   }
 };
 
-const saveState = (state: { contracts: ContractsState }) => {
+const saveState = (state: ContractsState) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setProduct('state', serializedState);
+    localStorage.setItem('state', serializedState);
   } catch (err) {
-    // Error message
+    console.error("Failed to save state:", err);
   }
 };
 
@@ -28,15 +28,20 @@ const store = configureStore({
   reducer: {
     contracts: contractsReducer,
   },
-  preloadedState,
+  preloadedState: { contracts: preloadedState || { contracts: [] } },
 });
 
 store.subscribe(() => {
-  saveState(store.getState());
+  saveState(store.getState().contracts);
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 
 export default store;

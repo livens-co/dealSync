@@ -6,14 +6,8 @@ export interface ContractsState {
   contracts: Contract[];
 }
 
-// Load contracts from localStorage
-const loadContracts = (): Contract[] => {
-  const data = localStorage.getItem('contracts');
-  return data ? JSON.parse(data) : [];
-};
-
 const initialState: ContractsState = {
-  contracts: loadContracts(),
+  contracts: [],
 };
 
 const contractsSlice = createSlice({
@@ -22,7 +16,6 @@ const contractsSlice = createSlice({
   reducers: {
     setContracts(state, action: PayloadAction<Contract[]>) {
       state.contracts = action.payload;
-      localStorage.setItem('contracts', JSON.stringify(state.contracts));
     },
     addContract(state, action: PayloadAction<Partial<Contract>>) {
       const newContract: Contract = {
@@ -31,14 +24,12 @@ const contractsSlice = createSlice({
         proizvodi: [],
       } as Contract;
       state.contracts.push(newContract);
-      localStorage.setItem('contracts', JSON.stringify(state.contracts));
     },
     updateContract(state, action: PayloadAction<{ id: string; updates: Partial<Contract> }>) {
       const { id, updates } = action.payload;
       const contract = state.contracts.find((c) => c.id === id);
       if (contract) {
         Object.assign(contract, updates);
-        localStorage.setItem('contracts', JSON.stringify(state.contracts));
       }
     },
     addProductToContract(state, action: PayloadAction<{ contractId: string; product: Product }>) {
@@ -46,7 +37,6 @@ const contractsSlice = createSlice({
       const contract = state.contracts.find((c) => c.id === contractId);
       if (contract) {
         contract.proizvodi.push(product);
-        localStorage.setItem('contracts', JSON.stringify(state.contracts));
       }
     },
     updateProductStatus(
@@ -59,7 +49,6 @@ const contractsSlice = createSlice({
         const product = contract.proizvodi.find((p) => p.id === productId);
         if (product) {
           product.status = status;
-          localStorage.setItem('contracts', JSON.stringify(state.contracts));
         }
       }
     },

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { format } from "date-fns";
-import { RootState } from "../../store";
+import { RootState } from "../../store/store";
 import { Contract, Product } from "../../types";
 import Table from "../../components/Table";
 import "./style.scss";
