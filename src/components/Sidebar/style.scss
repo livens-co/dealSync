@@ -1,0 +1,80 @@
+.sidebar {
+  width: 16rem;
+  height: 100vh;
+  padding: 1.25rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 0.01em solid rgba(215, 215, 215, 0.7);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 24px;
+      color: white;
+      font-weight: 300;
+      text-align: center;
+    }
+  }
+
+  .menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+
+    li {
+      margin-bottom: 1.25rem;
+      width: 100%;
+
+      a {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        padding: 0.65rem 1rem;
+        border-radius: 0.35rem;
+        transition: all 300ms ease;
+        font-weight: 300;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.4);
+        }
+
+        svg {
+          margin-right: 0.75rem;
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: auto;
+    width: 100%;
+
+    .logoutBtn {
+      width: 100%;
+      text-decoration: none;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      padding: 0.65rem 1rem;
+      border-radius: 0.35rem;
+      transition: all 300ms ease;
+      font-weight: 300;
+      background-color: transparent;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      svg {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+}

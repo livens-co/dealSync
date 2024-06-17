@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: white;  
+  background: rgb(3,40,29);
+  background: -moz-linear-gradient(0deg, rgba(3,40,29,1) 40%, rgba(18,130,123,1) 95%);
+  background: -webkit-linear-gradient(0deg, rgba(3,40,29,1) 40%, rgba(18,130,123,1) 95%);
+  background: linear-gradient(0deg, rgba(3,40,29,1) 40%, rgba(18,130,123,1) 95%);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
